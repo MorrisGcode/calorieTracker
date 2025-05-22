@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block content%}
+
+    <h1>Daily Calorie Tracker</h1>
+
+    <div class="total-calories">
+        Total Calories Today: {{ total_calories }}
+    </div>
+
+    <h2>Add Food Item</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Add Food</button>
+    </form>
+
+    <h2>Food Items Consumed Today</h2>
+    {% if food_items %}
+        <ul>
+            {% for item in food_items %}
+                <li>
+                    {{ item.name }} - {{ item.calories }} calories
+                    <form action="{% url 'remove_food_item' item.id %}" method="post" style="display:inline;">
+                        {% csrf_token %}
+                        <button type="submit">Remove</button>
+                    </form>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No food items added yet for today.</p>
+    {% endif %}
+
+    <form action="{% url 'reset_calories' %}" method="post" style="margin-top: 20px;">
+        {% csrf_token %}
+        <button type="submit" class="reset-button">Reset Calories for Today</button>
+    </form>
+
+{% endblock %}
