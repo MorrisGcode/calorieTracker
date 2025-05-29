@@ -73,16 +73,6 @@ WSGI_APPLICATION = 'calorie_tracker.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
-# DATABASES = {
-#  'default':{
-#     'ENGINE': 'django.db.backends.postgresql',
-#     'NAME': 'calorietracker', 
-#     'USER': 'doe', 
-#     'PASSWORD': '123456',
-#     'HOST': 'localhost',
-#     'PORT': '5432'
-#  }
-# }
 DATABASES = { 
    # the link here is the external link provided on postgresql web service db 
    "default": dj_database_url.parse("postgresql://comp_flik_user:VCc3ELV3wGdDETompchlAooVT9cr19TN@dpg-d0m4dnqdbo4c73cfu5b0-a.oregon-postgres.render.com/comp_flik") 
